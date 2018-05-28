@@ -1,0 +1,24 @@
+* {
+    box-sizing: border-box;
+    background-color: lightgrey;
+}
+
+.box {
+    border: 2px dashed;
+    height: 40px;
+    width: 150px;
+    float: left;
+    background-color: beige;
+    margin: 5px;
+    }
+
+
+.containerBaris {
+    display: block;
+    border: 2px;
+    margin: 5px;
+}
+
+.start-game-button {
+    padding: 5px;
+}

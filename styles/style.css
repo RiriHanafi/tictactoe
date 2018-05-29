@@ -1,24 +1,34 @@
-* {
-    box-sizing: border-box;
-    background-color: lightgrey;
+body {
+    margin: 0px;
+    margin-top: 10px;
+    background-color: darkslateblue;
+    text-align: center;
+}
+
+h3 {
+    font-family: monospace;
+    font-size: 30px;
+    color: lightgray;
 }
 
 .box {
-    border: 2px dashed;
-    height: 40px;
-    width: 150px;
-    float: left;
+    display: inline-block;
+    width: 80px;
+    height: 80px;
     background-color: beige;
-    margin: 5px;
+    margin-top: 5px;
+    margin-right: 5px;
+    margin-left: 5px;
+    padding: 20px;
+    padding-top: 30px;
     }
 
-
 .containerBaris {
-    display: block;
-    border: 2px;
-    margin: 5px;
+    display: inline-block;
+    background-color: transparent;
 }
 
 .start-game-button {
+    margin-top: 20px;
     padding: 5px;
 }

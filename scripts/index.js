@@ -1,14 +1,14 @@
 var containerGame = document.getElementById('containerGame');
-var msg = document.getElementById("message");
 var player = "X";
 
-function startGame() {
-    myGameArea.start();
-}
-
-var myGame = generateBoard();
+var movePattern = ['00', '10', '20', '01', '11', '21', '02', '12', '22']
+var isWin = false;
+var isTie = false;
+var winner = '';
+var countMove = 0;
 
 function generateBoard (){
+    restart();
     containerGame.innerHTML = ''
     var jumlahBaris = 3
     var jumlahKolom = 3
@@ -19,75 +19,84 @@ function generateBoard (){
         divBaris.className = 'containerBaris'
             
         for (j=0; j < jumlahKolom; j++){
-            var divKolom = document.createElement('DIV')
+            var divKolom = document.createElement('TD')
             divKolom.id = 'box-'+i+j
             divKolom.className = 'box'
             divKolom.addEventListener("click", turn)
             divBaris.appendChild(divKolom)
         }
-        
     containerGame.appendChild(divBaris)
     }
 }
 
-
-
-var movePattern = [ '00', '10', '20', '01', '11', '21', '02', '12', '22']
-var countMove = 0;
 function turn(){
     var position = this.id.split('-')[1]    
     
-    for (var i = 0; i < 9; i++) {
-        if (this.innerHTML) {
-            return
-        }   
-        
-        if (player === "X"){
-            this.innerHTML = "X";
-            var x = movePattern.indexOf(position);
-            console.log(position);
-            movePattern.splice(x, 1, "X");
-            console.log(movePattern);
-            countMove++;
-            console.log(countMove);
-            player = "O";
-        } else {
-            this.innerHTML = "O";
-            var x = movePattern.indexOf(position);
-            console.log(position);
-            movePattern.splice(x, 1, "O");
-            console.log(movePattern);
-            countMove++;
-            console.log(countMove);
-            player = "X";
-        }
-
-        if (countMove >= 5){
-            checkWin();
-        }
+    if (isWin) {
+        return
     }
+
+    if (countMove === 9 && !isWin) {
+        alert('TIE')
+    } 
+
+    if (this.innerHTML) {
+        return
+    }   
+    
+    if (player === "X"){
+        this.innerHTML = "X";
+        var x = movePattern.indexOf(position);
+        movePattern.splice(x, 1, "X");
+        player = "O";
+        countMove++;
+    } else {
+        this.innerHTML = "O";
+        var x = movePattern.indexOf(position);
+        movePattern.splice(x, 1, "O");
+        player = "X";
+        countMove++;
+    }
+
+    if (checkWin()) {
+        alert(`Winner is ${winner}!`)
+    }   
+}
+
+function restart(){
+    movePattern = ['00', '10', '20', '01', '11', '21', '02', '12', '22']
+    isWin = false;
+    isTie = false;
+    winner = '';
+    player = "X";
+    countMove = 0;
 }
 
 function checkWin(){
-    console.log(`==>`, movePattern);
     if (movePattern[0] === movePattern[1] && movePattern[0] === movePattern[2] && movePattern[1] === movePattern[2]){
-        console.log(movePattern[0] + `'s win!`);
-        player = movePattern[0];
-        msg.innerHTML = player + `'s win!`;
-        starGame();
+        isWin = true;
+        winner = movePattern[0];
     } else if (movePattern[3] === movePattern[4] && movePattern[3] === movePattern[5] && movePattern[4] === movePattern[5]){
-        alert(movePattern[3] + `'s win!`);
+        isWin = true;
+        winner = movePattern[3];
     } else if (movePattern[6] === movePattern[7] && movePattern[6] === movePattern[8] && movePattern[7] === movePattern[8]){
-        alert(movePattern[0] + `'s win!`);
+        isWin = true;
+        winner = movePattern[6];
     } else if (movePattern[0] === movePattern[3] && movePattern[0] === movePattern[6] && movePattern[3] === movePattern[6]){
-        alert(movePattern[0] + `'s win!`);
+        isWin = true;
+        winner = movePattern[0];
     } else if (movePattern[1] === movePattern[4] && movePattern[1] === movePattern[7] && movePattern[4] === movePattern[7]){
-        alert(movePattern[0] + `'s win!`);
+        isWin = true;
+        winner = movePattern[1];
     } else if (movePattern[2] === movePattern[5] && movePattern[2] === movePattern[8] && movePattern[5] === movePattern[8]){
-        alert(movePattern[0] + `'s win!`);
-    } else if (movePattern[0] === movePattern[4] && movePattern[0] === movePattern[8] && movePattern[4] === movePattern[7]){
-        alert(movePattern[0] + `'s win!`);
+        isWin = true;
+        winner = movePattern[2];
+    } else if (movePattern[0] === movePattern[4] && movePattern[0] === movePattern[8] && movePattern[4] === movePattern[8]){
+        isWin = true;
+        winner = movePattern[0];
     } else if (movePattern[2] === movePattern[4] && movePattern[2] === movePattern[6] && movePattern[4] === movePattern[6]){
-        alert(movePattern[0] + `'s win!`);
-    }
+        isWin = true;
+        winner = movePattern[2];
+    }  
+    return isWin;
 }

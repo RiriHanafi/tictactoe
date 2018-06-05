@@ -11,6 +11,12 @@ h3 {
     color: lightgray;
 }
 
+p {
+    font-family: monospace;
+    font-size: 15px;
+    color: lightgray;
+}
+
 .box {
     width: 80px;
     height: 80px;

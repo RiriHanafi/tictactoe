@@ -3,6 +3,7 @@ Final Project
 
 1.	Topik : Tic Tac Toe 
 2.	Penjelasan Game
+
 a.	Logic Game
 Permainan antara Pemain 1 (dengan tanda “X”) dan Pemain 2 (dengan tanda “O”).
 Pada setiap gilirannya, masing2 pemain hanya mempunyai satu kesempatan untuk menempatkan tandanya.

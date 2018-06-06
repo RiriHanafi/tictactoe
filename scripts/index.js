@@ -66,14 +66,13 @@ function turn(){
 
     if (checkWin()) {
         document.getElementById("message").innerHTML = `Winner is ${winner}!`;
-    }   else {
-        compTurn();
-    }
-
-    if (countMove > 8 && !isWin) {
+    } else if (countMove > 8 && !isWin) {
         console.log(`===========> tie?`)
         document.getElementById("message").innerHTML = 'TIE!'
+    } else {
+        compTurn();
     }
+ 
 }
 
 function compTurn(){

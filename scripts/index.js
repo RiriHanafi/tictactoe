@@ -1,11 +1,25 @@
 var containerGame = document.getElementById('containerGame');
+var msg = document.getElementById('message');
 var player = "X";
 
 var movePattern = ['00', '10', '20', '01', '11', '21', '02', '12', '22']
+var taken = [false, false, false, false, false, false, false, false, false]
+var step = {
+    0 : '00',
+    1 : '10',
+    2 : '20', 
+    3 : '01', 
+    4 : '11', 
+    5 : '21', 
+    6 : '02', 
+    7 : '12', 
+    8 : '22'
+}
 var isWin = false;
 var isTie = false;
 var winner = '';
 var countMove = 0;
+var move = Math.floor(Math.random() * 9);
 
 function generateBoard (){
     restart();
@@ -36,10 +50,6 @@ function turn(){
         return
     }
 
-    if (countMove === 9 && !isWin) {
-        alert('TIE')
-    } 
-
     if (this.innerHTML) {
         return
     }   
@@ -48,28 +58,54 @@ function turn(){
         this.innerHTML = "X";
         var x = movePattern.indexOf(position);
         movePattern.splice(x, 1, "X");
+        taken.splice(x, 1, true);
         player = "O";
         countMove++;
-    } else {
-        this.innerHTML = "O";
-        var x = movePattern.indexOf(position);
-        movePattern.splice(x, 1, "O");
-        player = "X";
-        countMove++;
-    }
+        console.log(countMove);
+    } 
 
     if (checkWin()) {
-        alert(`Winner is ${winner}!`)
-    }   
+        document.getElementById("message").innerHTML = `Winner is ${winner}!`;
+    }   else {
+        compTurn();
+    }
+
+    if (countMove > 8 && !isWin) {
+        console.log(`===========> tie?`)
+        document.getElementById("message").innerHTML = 'TIE!'
+    }
+}
+
+function compTurn(){
+    
+    while (taken[move] === true){
+        move = Math.floor(Math.random() * 9);
+    }
+        
+    var location = step[move];
+    document.getElementById('box-'+ location).innerHTML = "O";
+    var x = movePattern.indexOf(location);
+    movePattern.splice(x, 1, "O");
+    taken.splice(x, 1, true);
+    player = "X";
+    countMove++;
+    console.log(countMove);
+    
+    if (checkWin()) {
+        document.getElementById("message").innerHTML = `Winner is ${winner}!`;
+    }
+   
 }
 
 function restart(){
     movePattern = ['00', '10', '20', '01', '11', '21', '02', '12', '22']
+    taken = [false, false, false, false, false, false, false, false, false]
     isWin = false;
     isTie = false;
     winner = '';
     player = "X";
     countMove = 0;
+    document.getElementById("message").innerHTML = "Welcome to Tic-Tac-Toe";
 }
 
 function checkWin(){

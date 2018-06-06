@@ -61,13 +61,11 @@ function turn(){
         taken.splice(x, 1, true);
         player = "O";
         countMove++;
-        console.log(countMove);
     } 
 
     if (checkWin()) {
         document.getElementById("message").innerHTML = `Winner is ${winner}!`;
     } else if (countMove > 8 && !isWin) {
-        console.log(`===========> tie?`)
         document.getElementById("message").innerHTML = 'TIE!'
     } else {
         compTurn();
@@ -88,8 +86,7 @@ function compTurn(){
     taken.splice(x, 1, true);
     player = "X";
     countMove++;
-    console.log(countMove);
-    
+       
     if (checkWin()) {
         document.getElementById("message").innerHTML = `Winner is ${winner}!`;
     }

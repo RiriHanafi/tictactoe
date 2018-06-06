@@ -1,7 +1,6 @@
 # tictactoe
 Final Project
 
-Final Project Milestone
 1.	Topik : Tic Tac Toe 
 2.	Mempelajari Logic dari aplikasi/permainan
 a.	Logic gamenya

@@ -5,16 +5,16 @@ var player = "X";
 var movePattern = ['00', '10', '20', '01', '11', '21', '02', '12', '22']
 var taken = [false, false, false, false, false, false, false, false, false]
 var step = {
-    0 : '00',
-    1 : '10',
-    2 : '20', 
-    3 : '01', 
-    4 : '11', 
-    5 : '21', 
-    6 : '02', 
-    7 : '12', 
-    8 : '22'
-}
+            0 : '00',
+            1 : '10',
+            2 : '20', 
+            3 : '01', 
+            4 : '11', 
+            5 : '21', 
+            6 : '02', 
+            7 : '12', 
+            8 : '22'
+            }
 var isWin = false;
 var isTie = false;
 var winner = '';
